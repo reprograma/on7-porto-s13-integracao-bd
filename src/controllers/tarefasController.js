@@ -67,6 +67,7 @@ const putTarefa = (req, res) => {
     Tarefas.update(
         { id },
         { $set: req.body },
+        { upsert : true},
         function (err) {
         res.status(201).send({ message: "Tarefa atualizada com sucesso!" });
     })
