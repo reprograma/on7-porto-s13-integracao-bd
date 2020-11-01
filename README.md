@@ -235,7 +235,3 @@ Order de alteração/criação de rotas:
 ### 7º - tarefas/:id (delete)
 ### 7º - tarefas/ (delete)
 ### 8º - tarefas/:id (put)
-
-router.delete("/:id", controller.deleteTarefa);
-router.delete("/", controller.deleteTarefaConcluida);
-router.put("/:id", controller.putTarefa);
