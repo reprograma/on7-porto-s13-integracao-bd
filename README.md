@@ -61,7 +61,7 @@ UPDATE - utilizamos esse comando para atualizar registros dentro das collections
       //caso apresente algum erro 
         if (err) res.status(500).send({ message: err.message });
         //caso consiga atualizar com sucesso
-        res.status(201).send({ message: "Atualizado com sucesso!" });
+        res.status(200).send({ message: "Atualizado com sucesso!" });
       })
 ```
 
