@@ -1,7 +1,23 @@
 const express = require("express")
 const bodyParser = require("body-parser")
+const mongoose = require("mongoose")
 
 const app = express()
+
+//String de conexão
+mongoose.connect("mongodb://localhost:27017/reprograma", { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true 
+});
+
+//Conexão com o mongo
+let db = mongoose.connection;
+
+// Captura de erro ou sucesso na conexão
+db.on("error", console.log.bind(console, "connection error:"))
+db.once("open", function (){
+  console.log("conexão feita com sucesso.")
+})
 
 //rotas
 const index = require("./routes/index")
