@@ -83,13 +83,22 @@ const deleteTarefaConcluida = (req, res) => {
 const putTarefa = (req, res) => {
   const id = req.params.id;
 
-  //faz o update apenas para quem respeitar o id passado no parametro
-  // set são os valores que serão atualizados
-  tarefas.update({ id }, { $set : req.body }, function (err) {
-    if (err) {
-      res.status(500).send({ message: err.message })
+  tarefas.find({ id }, function(err, tarefa){
+    if(tarefa.length> 0){
+      //faz o update apenas para quem respeitar o id passado no parametro
+      // set são os valores que serão atualizados
+      //UpdateMany atualiza vários registros de uma unica vez
+      //UpdateOne atualiza um único registro por vez
+      
+      tarefas.updateMany({ id }, { $set : req.body }, function (err) {
+        if (err) {
+          res.status(500).send({ message: err.message })
+        }
+        res.status(200).send({ message: "Registro alterado com sucesso"})
+      })
+    }else {
+      res.status(200).send({ message: "Não há registros para serem atualizados com esse id"})
     }
-    res.status(200).send({ message: "Registro alterado com sucesso"})
   })
 
 }
